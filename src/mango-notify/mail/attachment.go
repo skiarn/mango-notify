@@ -1,7 +1,6 @@
 package mail
 
 import (
-	"bytes"
 	"encoding/base64"
 	"fmt"
 	"mango-notify/models"
@@ -27,20 +26,7 @@ func (a *Attachment) Build() string {
 	}
 	encoded := base64.StdEncoding.EncodeToString(content)
 
-	//split the encoded file in lines (doesn't matter, but low enough not to hit a max limit)
-	lineMaxLength := 500
-	nbrLines := len(encoded) / lineMaxLength
-
-	var buf bytes.Buffer
-	//append lines to buffer
-	for i := 0; i < nbrLines; i++ {
-		buf.WriteString(encoded[i*lineMaxLength:(i+1)*lineMaxLength] + "\n")
-	} //for
-
-	//append last line in buffer
-	buf.WriteString(encoded[nbrLines*lineMaxLength:])
-
 	//part 3 will be the attachment
 	headers := makeAttachmentHeaders()
-	return fmt.Sprintf("\r\n%s\r\n\r\n%s\r\n--%s--", headers, buf.String(), marker)
+	return fmt.Sprintf("\r\n%s\r\n\r\n%s\r\n--%s--", headers, encoded, marker)
 }
