@@ -16,7 +16,7 @@ func main() {
 		fileChangedChan := make(chan bool)
 		io.OnFileChange(conf.File, fileChangedChan)
 		<-fileChangedChan
-		err := models.UpdateChangedLines(*conf.File)
+		err := models.UpdateChangedLines(conf.File)
 
 		if err != nil {
 			fmt.Println("Error while parsing file:", err)
@@ -31,10 +31,10 @@ func main() {
 				Subject:    "Mango notify",
 				Body:       mail.Body{Content: "Notify sent:" + t.Format("Mon Jan _2 15:04:05 2006")},
 				Attachment: mail.Attachment{Lines: lines},
-				Conf: mail.Conf{From: *conf.From,
-					To:         *conf.To,
-					Password:   *conf.Pwd,
-					ServerName: *conf.ServerName},
+				Conf: mail.Conf{From: conf.From,
+					To:         conf.To,
+					Password:   conf.Pwd,
+					ServerName: conf.ServerName},
 			}
 
 			m.Send()

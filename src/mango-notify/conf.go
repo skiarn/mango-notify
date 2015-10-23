@@ -7,11 +7,11 @@ import (
 
 //Conf is flag information configuration nessesary to run the application.
 type Conf struct {
-	File       *string
-	From       *string
-	Pwd        *string
-	To         *string
-	ServerName *string
+	File       string
+	From       string
+	Pwd        string
+	To         string
+	ServerName string
 }
 
 //GetConf reads nessesary flags and validates them.
@@ -36,5 +36,5 @@ func GetConf() *Conf {
 		log.Fatal("server is required. ex: smtp.gmail.com:465")
 	}
 
-	return &Conf{File: file, From: from, Pwd: pwd, To: to, ServerName: servername}
+	return &Conf{File: *file, From: *from, Pwd: *pwd, To: *to, ServerName: *servername}
 }

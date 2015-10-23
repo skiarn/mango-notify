@@ -7,13 +7,13 @@ import (
 )
 
 //OnFileChange detects if the file is changed.
-func OnFileChange(file *string, doneChan chan bool) error {
+func OnFileChange(file string, doneChan chan bool) error {
 	var err error
 	go func(doneChan chan bool) {
 		defer func() {
 			doneChan <- true
 		}()
-		err = watchFile(*file)
+		err = watchFile(file)
 		fmt.Println("File has been changed")
 	}(doneChan)
 	return err
