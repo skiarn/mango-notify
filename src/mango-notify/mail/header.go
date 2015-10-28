@@ -37,7 +37,8 @@ func makeAttachmentHeaders() string {
 
 	headers := make(map[string]string)
 	headers["Content-Type"] = "application/" + extNoDot + fmt.Sprintf("; name=\"%s\"", filename)
-	headers["Content-Transfer-Encoding"] = "base64"
+	headers["Content-Transfer-Encoding"] = "text/plain"
+
 	headers["Content-Disposition"] = fmt.Sprintf(" attachment; filename=\"%s\"", filename)
 	//part 3 will be the attachment
 

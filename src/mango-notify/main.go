@@ -30,7 +30,7 @@ func main() {
 			m := mail.Mail{
 				Subject:    "Mango notify",
 				Body:       mail.Body{Content: "Notify sent:" + t.Format("Mon Jan _2 15:04:05 2006")},
-				Attachment: mail.Attachment{Lines: lines},
+				Attachment: mail.Attachment{Lines: lines, EncryptionKey: conf.EncryptionKey},
 				Conf: mail.Conf{From: conf.From,
 					To:         conf.To,
 					Password:   conf.Pwd,
