@@ -1,8 +1,14 @@
 # mango-notify
 
+## Run application
+```
+nohup ./mango-notify -file=/var/log/auth.log -mailfrom=user@mail.com -pwd=1234 -mailto=myrealmail@mail.com -server=smtp.mail.com:465 -encKey=base64key > server.log 2>&1 &
+```
+
+**encKey can be generated when using android app:**
+https://github.com/skiarn/Mangodroid-notify
 
 ### Example notify on changes in auth log.
-
 
 #### Setup privileges for user running the application.
 ##### Install acl 
