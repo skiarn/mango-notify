@@ -34,7 +34,6 @@ func watchFile(filePath string, sleeptime int) error {
 		if stat.Size() != initialStat.Size() || stat.ModTime() != initialStat.ModTime() {
 			break
 		}
-		fmt.Println("checking file...")
 		time.Sleep(time.Duration(sleeptime) * time.Second)
 	}
 
