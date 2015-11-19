@@ -9,6 +9,7 @@ import (
 //Conf is flag information configuration nessesary to run the application.
 type Conf struct {
 	File          string
+	Time          int
 	From          string
 	Pwd           string
 	To            string
@@ -19,6 +20,7 @@ type Conf struct {
 //GetConf reads nessesary flags and validates them.
 func GetConf() *Conf {
 	file := flag.String("file", "/var/log/auth.log", "Define auth file to watch.")
+	time := flag.Int("time", 6, "Define how often file should be checked for changes.")
 	from := flag.String("mailfrom", "", "Define user who send the mail.")
 	pwd := flag.String("pwd", "", "Define user pwd for sending mail account.")
 	to := flag.String("mailto", "", "Define user who receive the mail.")
@@ -52,5 +54,5 @@ func GetConf() *Conf {
 		}
 	}
 
-	return &Conf{File: *file, From: *from, Pwd: *pwd, To: *to, ServerName: *servername, EncryptionKey: *encryptonKey}
+	return &Conf{File: *file, Time: *time, From: *from, Pwd: *pwd, To: *to, ServerName: *servername, EncryptionKey: *encryptonKey}
 }

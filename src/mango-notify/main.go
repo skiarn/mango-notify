@@ -14,7 +14,7 @@ func main() {
 
 	for {
 		fileChangedChan := make(chan bool)
-		io.OnFileChange(conf.File, fileChangedChan)
+		io.OnFileChange(conf.File, fileChangedChan, conf.Time)
 		<-fileChangedChan
 		err := models.UpdateChangedLines(conf.File)
 
